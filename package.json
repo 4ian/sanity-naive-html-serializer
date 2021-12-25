@@ -48,7 +48,7 @@
     "husky": "^4.3.0",
     "jest": "^27.0.0",
     "jest-environment-jsdom": "^27.3.0",
-    "size-limit": "^4.7.0",
+    "size-limit": "7.0.5",
     "ts-jest": "^27.0.5",
     "tsdx": "^0.14.1",
     "tslib": "^2.0.3",
