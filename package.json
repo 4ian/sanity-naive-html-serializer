@@ -44,7 +44,7 @@
     }
   ],
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.7.0",
+    "@size-limit/preset-small-lib": "7.0.5",
     "husky": "^4.3.0",
     "jest": "^27.0.0",
     "jest-environment-jsdom": "^27.3.0",
