@@ -44,15 +44,15 @@
     }
   ],
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.7.0",
-    "husky": "^4.3.0",
-    "jest": "^27.0.0",
-    "jest-environment-jsdom": "^27.3.0",
-    "size-limit": "^4.7.0",
-    "ts-jest": "^27.0.5",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.0.3",
-    "typescript": "^4.4.3"
+    "@size-limit/preset-small-lib": "4.12.0",
+    "husky": "4.3.8",
+    "jest": "27.3.1",
+    "jest-environment-jsdom": "27.3.1",
+    "size-limit": "4.12.0",
+    "ts-jest": "27.0.7",
+    "tsdx": "0.14.1",
+    "tslib": "2.3.1",
+    "typescript": "4.4.4"
   },
   "dependencies": {
     "@sanity/base": "^2.21.4",
