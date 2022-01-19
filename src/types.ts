@@ -16,7 +16,8 @@ export interface Serializer {
     translationLevel: string,
     baseLang?: string,
     stopTypes?: string[],
-    serializers?: Record<string, any>
+    serializers?: Record<string, any>,
+    outputName?: string
   ) => SerializedDocument
   fieldFilter: (
     obj: Record<string, any>,

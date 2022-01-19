@@ -21,7 +21,7 @@ const serializeDocument = (
   baseLang = 'en',
   stopTypes = defaultStopTypes,
   serializers = customSerializers,
-  outputName: string
+  outputName = doc?._id
 ) => {
   let filteredObj: Record<string, any> = {}
 
@@ -77,7 +77,7 @@ const serializeDocument = (
   rawHTML.appendChild(rawHTMLBody)
 
   return {
-    name: outputName || doc._id,
+    name: outputName || doc._id,
     content: rawHTML.outerHTML,
   }
 }
