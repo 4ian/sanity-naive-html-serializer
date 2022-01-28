@@ -22,7 +22,38 @@ const defaultSchema = Schema.compile({
         {
           name: 'block',
           type: 'array',
-          of: [{ type: 'block' }],
+          of: [
+            {
+              type: 'block',
+              marks: {
+                annotations: [
+                  {
+                    name: 'link',
+                    type: 'object',
+                    title: 'External Link',
+                    fields: [
+                      {
+                        name: 'url',
+                        type: 'url',
+                      },
+                    ],
+                  },
+                  {
+                    name: 'internalLink',
+                    type: 'object',
+                    title: 'Internal link',
+                    fields: [
+                      {
+                        name: 'internalLink',
+                        type: 'internalLink',
+                        title: 'Internal Page',
+                      },
+                    ],
+                  },
+                ],
+              },
+            },
+          ],
         },
       ],
     },
@@ -41,6 +72,7 @@ export const deserializeDocument = (
   const metadata: Record<string, any> = {}
   const head = new DOMParser().parseFromString(serializedDoc, 'text/html').head
 
+  // meta
   Array.from(head.children).forEach(metaTag => {
     const validTags = ['_id', '_rev', '_type']
     const metaName = metaTag.getAttribute('name')

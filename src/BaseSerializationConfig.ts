@@ -6,7 +6,6 @@ export const defaultStopTypes = [
   'datetime',
   'file',
   'geopoint',
-  'image',
   'number',
   'crop',
   'hotspot',

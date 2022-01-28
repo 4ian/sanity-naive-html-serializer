@@ -119,7 +119,10 @@ const fieldFilter = (
       return true
     } else if (Array.isArray(obj[field.name])) {
       return true
-    } else if (!stopTypes.includes(field.type)) {
+    } else if (
+      !stopTypes.includes(field.type) &&
+      !stopTypes.includes(field.name)
+    ) {
       return true
     }
     return false
@@ -223,11 +226,15 @@ const serializeObject = (
       return ''
     }
     tempSerializers.types[obj._type] = (props: Record<string, any>) => {
-      return h('div', {
-        className: topFieldName ?? props.node._type,
-        id: props.node._key ?? props.node._id,
-        innerHTML: innerHTML,
-      })
+      if (topFieldName || props.node._type) {
+        return h('div', {
+          className: topFieldName || props.node._type || '',
+          id: props.node._key ?? props.node._id,
+          innerHTML: innerHTML,
+        })
+      } else {
+        return innerHTML
+      }
     }
   }
 
