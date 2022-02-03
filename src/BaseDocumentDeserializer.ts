@@ -12,6 +12,18 @@ const noSchemaWarning = (obj: Element) =>
   `WARNING: Unfortunately the deserializer may have issues with this field or object: ${obj.className}.
   If it's a specific type, you may need to declare  at the top level, or write a custom deserializer.`
 
+export default function generateRandomHash() {
+  const alphabet = 'abcdefghijklmnopqrstuvxyz'
+  const numbers = '012345679'
+  let output = ''
+  for (let i = 0; i < 9; i += 1) {
+    output += `${alphabet[Math.ceil(Math.random() * (alphabet.length - 1))]}${
+      numbers[Math.ceil(Math.random() * (numbers.length - 1))]
+    }`
+  }
+  return output
+}
+
 const defaultSchema = Schema.compile({
   name: 'default',
   types: [
@@ -201,7 +213,8 @@ const deserializeHTML = (
         // @ts-ignore
         if (Array.isArray(output) && deserializedObj) {
           deserializedObj._type = child.className
-          deserializedObj._key = child.id
+          // make sure that a key is rendered
+          deserializedObj._key = child.id || generateRandomHash()
         }
       } else {
         deserializedObj = blockTools.htmlToBlocks(
@@ -209,7 +222,8 @@ const deserializeHTML = (
           blockContentType,
           { rules: blockDeserializers }
         )[0]
-        deserializedObj._key = child.id
+        // make sure that a key is rendered
+        deserializedObj._key = child.id || generateRandomHash()
       }
 
       // @ts-ignore
