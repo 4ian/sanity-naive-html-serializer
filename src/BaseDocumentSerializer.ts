@@ -32,7 +32,8 @@ const serializeDocument = (
   }
 
   const serializedFields: Record<string, any> = {}
-  for (let key in filteredObj) {
+  const orderedKeys = Object.keys(filteredObj).sort()
+  for (let key of orderedKeys) {
     const value: Record<string, any> | Array<any> = filteredObj[key]
     if (typeof value === 'string') {
       serializedFields[key] = value
@@ -192,35 +193,40 @@ const serializeObject = (
 
   if (obj._type !== 'span' && obj._type !== 'block') {
     let innerHTML = ''
-    Object.entries(obj).forEach(([fieldName, value]) => {
-      let htmlField = ''
 
-      if (!['_key', '_type', '_id'].includes(fieldName)) {
-        if (typeof value === 'string') {
-          const htmlRegex = /^</
-          //this field may have been recursively turned into html already.
-          htmlField = value.match(htmlRegex)
-            ? value
-            : `<span class="${fieldName}">${value}</span>`
-        } else if (Array.isArray(value)) {
-          htmlField = serializeArray(value, fieldName, stopTypes, serializers)
-        } else {
-          const schema = getSchema(value._type)
-          let toTranslate = value
-          if (schema) {
-            toTranslate = fieldFilter(value, schema.fields, stopTypes)
+    // It's important to keep keys sorted to ensure stability of the output.
+    Object.keys(obj)
+      .sort()
+      .forEach(fieldName => {
+        const value = obj[fieldName]
+        let htmlField = ''
+
+        if (!['_key', '_type', '_id'].includes(fieldName)) {
+          if (typeof value === 'string') {
+            const htmlRegex = /^</
+            //this field may have been recursively turned into html already.
+            htmlField = value.match(htmlRegex)
+              ? value
+              : `<span class="${fieldName}">${value}</span>`
+          } else if (Array.isArray(value)) {
+            htmlField = serializeArray(value, fieldName, stopTypes, serializers)
+          } else {
+            const schema = getSchema(value._type)
+            let toTranslate = value
+            if (schema) {
+              toTranslate = fieldFilter(value, schema.fields, stopTypes)
+            }
+            const objHTML = serializeObject(
+              toTranslate,
+              null,
+              stopTypes,
+              serializers
+            )
+            htmlField = `<div class="${fieldName}">${objHTML}</div>`
           }
-          const objHTML = serializeObject(
-            toTranslate,
-            null,
-            stopTypes,
-            serializers
-          )
-          htmlField = `<div class="${fieldName}">${objHTML}</div>`
         }
-      }
-      innerHTML += htmlField
-    })
+        innerHTML += htmlField
+      })
 
     if (!innerHTML) {
       return ''

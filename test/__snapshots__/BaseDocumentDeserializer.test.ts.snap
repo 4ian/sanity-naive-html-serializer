@@ -134,7 +134,7 @@ Object {
           "_type": "block",
           "children": Array [
             Object {
-              "_key": "randomKey-20",
+              "_key": "randomKey-10",
               "_type": "span",
               "marks": Array [],
               "text": "This is block text 1 level deep",
@@ -151,7 +151,7 @@ Object {
             "_type": "block",
             "children": Array [
               Object {
-                "_key": "randomKey-10",
+                "_key": "randomKey-20",
                 "_type": "span",
                 "marks": Array [],
                 "text": "This is block text 2 levels deep",
