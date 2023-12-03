@@ -164,7 +164,7 @@ const serializeArray = (
 
   const output = filteredBlocks.map((obj, i) => {
     if (typeof obj === 'string') {
-      return `<span>${obj}</span>`
+      return `<div data-type="string">${obj}</div>`
     } else {
       return serializeObject(obj, null, stopTypes, serializers)
     }
@@ -207,7 +207,7 @@ const serializeObject = (
             //this field may have been recursively turned into html already.
             htmlField = value.match(htmlRegex)
               ? value
-              : `<span class="${fieldName}">${value}</span>`
+              : `<div class="${fieldName}" data-type="string">${value}</div>`
           } else if (Array.isArray(value)) {
             htmlField = serializeArray(value, fieldName, stopTypes, serializers)
           } else {

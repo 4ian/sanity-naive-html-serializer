@@ -158,7 +158,11 @@ const deserializeHTML = (
       }
 
       //flat string, it's an unrich field
-      else if (child.tagName.toLowerCase() === 'span') {
+      else if (
+        child.tagName.toLowerCase() === 'span' ||
+        // @ts-ignore
+        (child.dataset && child.dataset.type === 'string')
+      ) {
         deserializedObj = child.innerHTML
       }
 
