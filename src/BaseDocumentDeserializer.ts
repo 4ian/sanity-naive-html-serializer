@@ -174,14 +174,25 @@ const deserializeHTML = (
           objType = target.fields.find(field => field.name === child.className)
         }
 
+        // Find if the field is a type of the schema.
         if (!objType && schema.get(child.className)) {
           objType = schema.get(child.className)
         }
 
+        // Find if the field is a field of an object
         //@ts-ignore
         if (!objType && target && target.type && target.type.fields) {
           //@ts-ignore
           objType = target.type.fields.find(
+            (field: ObjectField) => field.name === child.className
+          )
+        }
+
+        // Find if the field is a field of an array
+        //@ts-ignore
+        if (!objType && target && target.type && target.type.of) {
+          //@ts-ignore
+          objType = target.type.of.find(
             (field: ObjectField) => field.name === child.className
           )
         }

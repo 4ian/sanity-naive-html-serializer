@@ -113,6 +113,23 @@
       "style": "h2"
     }
   ],
+  "nested_inline_arrays_and_objects": {
+    "copy": "Some explanation.",
+    "features": [
+      {
+        "_key": "a7d2f116051d",
+        "_type": "feature",
+        "description": "Some nice feature",
+        "title": "Some feature title"
+      },
+      {
+        "_key": "38589d9aad36",
+        "_type": "feature",
+        "description": "Some very nice feature description",
+        "title": "Some other feature title"
+      }
+    ]
+  },
   "hidden": true,
   "meta": "Do not translate this",
   "snippet": "This is text in my text field.",

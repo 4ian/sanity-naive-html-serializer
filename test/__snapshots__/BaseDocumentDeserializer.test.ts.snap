@@ -111,6 +111,23 @@ Object {
       "style": "h2",
     },
   ],
+  "nested_inline_arrays_and_objects": Object {
+    "copy": "Some explanation.",
+    "features": Array [
+      Object {
+        "_key": "a7d2f116051d",
+        "_type": "feature",
+        "description": "Some nice feature",
+        "title": "Some feature title",
+      },
+      Object {
+        "_key": "38589d9aad36",
+        "_type": "feature",
+        "description": "Some very nice feature description",
+        "title": "Some other feature title",
+      },
+    ],
+  },
   "snippet": "This is text in my text field.",
   "tags": Array [
     "tag 1",

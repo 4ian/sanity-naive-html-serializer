@@ -93,6 +93,33 @@ const documentLevelArticle = {
       title: 'Content',
       type: 'arrayField',
     },
+
+    // Test a inline object, with nested  array and object:
+    {
+      name: 'nested_inline_arrays_and_objects',
+      title: 'Cloud features list',
+      type: 'object',
+      fields: [
+        { name: 'title', type: 'string' },
+        { name: 'copy', type: 'string' },
+        {
+          name: 'features',
+          type: 'array',
+          of: [
+            {
+              name: 'feature',
+              title: 'Feature',
+              type: 'object',
+              fields: [
+                { name: 'title', type: 'string' },
+                { name: 'description', type: 'string' },
+              ],
+            },
+          ],
+        },
+        { name: 'see_all_label', title: '"See all" label', type: 'string' },
+      ],
+    },
   ],
 }
 
